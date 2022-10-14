@@ -3,10 +3,11 @@ import express from 'express'
 import * as path from "path";
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
-import indexRouter from './routes/index.js'
+import routerRestaurants from './routes/Restaurants.js'
 import cors from 'cors'
 import cnxMongo from './connction/mongo.js'
 import ImageRouter from './routes/Images.js'
+import indexRouter from "./routes/index.js";
 
 const app = express()
 
@@ -21,8 +22,9 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(path.dirname("./views"), 'public')))
 
-app.use('/api/restaurants', indexRouter)
-app.use('/api/images', ImageRouter)
+app.use(indexRouter)
+app.use('/api', routerRestaurants)
+app.use('/api', ImageRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
