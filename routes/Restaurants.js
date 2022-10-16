@@ -11,7 +11,7 @@ router.get('/restaurants', (req, res, next) => {
         Restaurant.findByIdAndUpdate(id,
           {
             $set: {
-              imgURL: host + "/api/images/" + idMeal + ".webp"
+              imgURL: host + "/api/images/" + idMeal + ".jpg"
             },
           },
           { new: true })
